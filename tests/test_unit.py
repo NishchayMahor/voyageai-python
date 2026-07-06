@@ -623,9 +623,7 @@ class TestEmbeddingsUtils:
 
         mock_response = MagicMock()
         mock_response.data = [{"embedding": [0.1]}]
-        with patch(
-            "voyageai.Embedding.acreate", return_value=mock_response
-        ) as mock_acreate:
+        with patch("voyageai.Embedding.acreate", return_value=mock_response) as mock_acreate:
             await _aget_embeddings(["a"], model="voyage-3", input_type="query")
 
         assert mock_acreate.call_args.kwargs["input_type"] == "query"
